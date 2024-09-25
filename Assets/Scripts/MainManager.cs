@@ -11,17 +11,36 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+
     public GameObject GameOverText;
     
     private bool m_Started = false;
-    private int m_Points;
+    public int m_Points;
+
     
     private bool m_GameOver = false;
 
-    
+    public Button boton;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Record.text = "Mayor Puntaje: " + mayor;
+        boton = boton.gameObject.GetComponent<Button>();
+        boton.onClick.AddListener(Cargar);
+        if (Controlar.Instance != null)
+        {
+            Debug.Log(Controlar.Instance.nombre);
+            
+        }
+        else
+        {
+            Debug.Log("NO HAY");
+        }
+
+
+
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -37,7 +56,13 @@ public class MainManager : MonoBehaviour
             }
         }
     }
+    void Cargar()
+    {
 
+        // Debug.Log(boton.gameObject.name + " es " + nombre);
+        SceneManager.LoadScene(0);
+
+    }
     private void Update()
     {
         if (!m_Started)
@@ -70,6 +95,7 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
+
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
