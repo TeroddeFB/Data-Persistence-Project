@@ -9,9 +9,10 @@ public class ManagerTodo : MonoBehaviour
 {
     public Button boton;
     public TextMeshProUGUI titular;
-    public TextMeshProUGUI texto;
+    public TMP_InputField texto;
+
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         
         boton = boton.gameObject.GetComponent<Button>();
@@ -22,8 +23,7 @@ public class ManagerTodo : MonoBehaviour
     void Cargar()
     {
 
-        // Debug.Log(boton.gameObject.name + " es " + nombre);
-        if (Controlar.Instance.nombre != null)
+        if (texto.text != "")
         {
             SceneManager.LoadScene(1);
         }
@@ -32,6 +32,7 @@ public class ManagerTodo : MonoBehaviour
     void Update()
     {
         Controlar.Instance.nombre = texto.text;
-        titular.text = Controlar.Instance.nombre;
+        titular.text = "Tu nombre: " + Controlar.Instance.nombre;
+
     }
 }
